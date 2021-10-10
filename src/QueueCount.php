@@ -1,6 +1,6 @@
 <?php
 
-namespace tobya\Queuestatus;
+namespace Tobya\Queuestatus;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
