@@ -49,7 +49,7 @@ class QueueCount extends Command
         } else {
             $Qs = DB::select('Select distinct queue from jobs');
             if (count($Qs) > 0){
-                collect()->each(function ($queue){
+                collect($Qs)->each(function ($queue){
                      $this->info( $queue->queue.':' . Queue::size($queue->queue));
                 });
             } else {
