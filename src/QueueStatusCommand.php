@@ -20,7 +20,7 @@ class QueueStatusCommand extends QueueCount
      * @var string
      */
     protected $description = 'Queue Count Status';
-    protected $hidden = true;
+ 
 
     /**
      * Create a new command instance.

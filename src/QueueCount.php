@@ -21,7 +21,7 @@ class QueueCount extends Command
      * @var string
      */
     protected $description = 'Return number of jobs in Queue';
-
+    protected $hidden = true;
     /**
      * Create a new command instance.
      *
