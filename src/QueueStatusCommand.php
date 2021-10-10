@@ -12,7 +12,7 @@ class QueueStatusCommand extends QueueCount
      *
      * @var string
      */
-    protected $signature = 'queue:status {--queue= : Queue to query}';
+    protected $signature = 'queue:status {--queue= : Queue to get Status from}';
 
     /**
      * The console command description.
@@ -20,7 +20,7 @@ class QueueStatusCommand extends QueueCount
      * @var string
      */
     protected $description = 'Queue Count Status';
- 
+    protected $hidden = false;
 
     /**
      * Create a new command instance.
