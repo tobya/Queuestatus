@@ -1,0 +1,25 @@
+{
+    "name": "tobya/queuestatus",
+    "description": "Allows you to get basic details of your Laravel Queue Stack",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tobya\\Queuestatus\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Toby Allen",
+            "email": "toby@toflidium.com"
+        }
+    ],
+    "require": {},    
+    "extra": {
+        "laravel":{
+            "providers" : [
+                "Tobya\\Queuestatus\\QueueStatusServiceProvider"
+            ]
+        }
+    }
+}
