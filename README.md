@@ -1,10 +1,8 @@
 # Queuestatus
 Allows you to get basic details of your Laravel Queue Stack
 
-> php artisan Queue:status
+![image](https://user-images.githubusercontent.com/325502/152027753-6d50147b-d15d-4d5a-85cd-eec6ab167b0a.png)
 
-> default:3
-> email:12
 
 # Installation
 
