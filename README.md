@@ -8,6 +8,12 @@ Allows you to get basic details of your Laravel Queue Stack
 
 > Composer require tobya/Queuestatus
 
+# Usage
+
+> php artisan queue:status 
+
+> php artisan queue:status --queue=email
+
 # Requires
 
 Only works when you are using a database for your queue.  Wont work with Redis etc.
