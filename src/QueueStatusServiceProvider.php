@@ -27,6 +27,7 @@ class QueueStatusServiceProvider extends ServiceProvider
         $this->commands([
             QueueCount::class,
             QueueStatusCommand::class,
+            QueueJobs::class,
         ]);
     }
     }
