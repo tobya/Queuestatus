@@ -49,8 +49,8 @@ class QueueJobs extends Command
         //  return $jobs->count() . 'alsdkjflj';
         //$this->info($jobs->count());
         $jobs->each(function ($job){
-            $J = json_decode($job->payload);
-            $this->info( $J->uuid .' | '. $J->displayName);
+            $JobDetails = json_decode($job->payload);
+            $this->info( $job->queue .' | '. $JobDetails->displayName);
         });
 
     }
