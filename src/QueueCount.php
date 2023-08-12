@@ -43,19 +43,29 @@ class QueueCount extends Command
             $this->error('Queue Connection must be database to use Queue:Count.');
             return 1;
         }
-
         if ($this->option ('queue') <> ''){
             $this->info( $this->option('queue').':' . Queue::size($this->option('queue')));
         } else {
             $Qs = DB::select('Select distinct queue from jobs');
             if (count($Qs) > 0){
+                $this->info('-----Job Totals-------------------------------------------');
                 collect($Qs)->each(function ($queue){
                      $this->info( $queue->queue.':' . Queue::size($queue->queue));
                 });
+                $this->info('-----Job Info ---------------------------------------');
             } else {
                 $this->info('default:0');
             }
         }
+
+        $jobs = Job::take(5)->get();
+        //  return $jobs->count() . 'alsdkjflj';
+        //$this->info($jobs->count());
+        $jobs->each(function ($job){
+            $JobDetails = json_decode($job->payload);
+            $this->info( $job->queue .' | '. $JobDetails->displayName);
+        });
+
         return 0;
     }
 }
