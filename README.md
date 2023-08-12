@@ -14,6 +14,14 @@ Allows you to get basic details of your Laravel Queue Stack
 
 > php artisan queue:status --queue=email
 
+You can also view job models
+
+> php artisan queue:jobs
+
+and there is an alias for status
+
+> php artisan queue:count
+
 # Requires
 
 Only works when you are using a database for your queue.  Wont work with Redis etc.
