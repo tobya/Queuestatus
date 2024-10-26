@@ -13,7 +13,7 @@ class QueueCount extends Command
      *
      * @var string
      */
-    protected $signature = 'queue:count {--queue= : Queue to query}';
+    protected $signature = 'queue:count {--queue= : Queue to query} {--live} {--pause=3 : Number seconds to pause before rechecking status}';
 
     /**
      * The console command description.
@@ -65,6 +65,11 @@ class QueueCount extends Command
             $JobDetails = json_decode($job->payload);
             $this->info( $job->queue .' | '. $JobDetails->displayName);
         });
+
+        if ($this->option('live')  ){
+            sleep($this->option('pause'));
+            $this->handle();
+        }
 
         return 0;
     }

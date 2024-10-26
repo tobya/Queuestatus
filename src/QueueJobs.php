@@ -13,7 +13,7 @@ class QueueJobs extends Command
      *
      * @var string
      */
-    protected $signature = 'queue:jobs {--count=10} {--queue=} ';
+    protected $signature = 'queue:jobs  {--count=10} {--queue=}  ';
 
     /**
      * The console command description.
