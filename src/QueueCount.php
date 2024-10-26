@@ -13,7 +13,9 @@ class QueueCount extends Command
      *
      * @var string
      */
-    protected $signature = 'queue:count {--queue= : Queue to query} {--live} {--pause=3 : Number seconds to pause before rechecking status}';
+    protected $signature = 'queue:count {--queue= : Queue to query} 
+                                        {--live} {--pause=3 : Number seconds to pause before rechecking status}                                        
+                                        ';
 
     /**
      * The console command description.
@@ -22,6 +24,8 @@ class QueueCount extends Command
      */
     protected $description = 'Return number of jobs in Queue';
     protected $hidden = true;
+
+    protected $live_starttime = null;
     /**
      * Create a new command instance.
      *
@@ -30,6 +34,7 @@ class QueueCount extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->live_starttime = now();
     }
 
     /**
@@ -68,7 +73,10 @@ class QueueCount extends Command
 
         if ($this->option('live')  ){
             sleep($this->option('pause'));
-            $this->handle();
+            // continue for 10 minutes unless stopped.
+            if ($this->live_starttime->clone()->addMinutes(10) < now()){
+              $this->handle();
+            }
         }
 
         return 0;
