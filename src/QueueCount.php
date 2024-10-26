@@ -13,8 +13,9 @@ class QueueCount extends Command
      *
      * @var string
      */
-    protected $signature = 'queue:count {--queue= : Queue to query} 
-                                        {--live} {--pause=3 : Number seconds to pause before rechecking status}                                        
+    protected $signature = 'queue:count {--queue= : Queue to query}
+                                        {--live}
+                                        {--pause=3 : Number seconds to pause before rechecking status}
                                         ';
 
     /**
@@ -74,8 +75,10 @@ class QueueCount extends Command
         if ($this->option('live')  ){
             sleep($this->option('pause'));
             // continue for 10 minutes unless stopped.
-            if ($this->live_starttime->clone()->addMinutes(10) < now()){
+            if ($this->live_starttime->clone()->addMinutes(10) > now()){
               $this->handle();
+            } else {
+                $this->info('Queue:Status timeout.');
             }
         }
 
