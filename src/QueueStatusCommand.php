@@ -13,8 +13,9 @@ class QueueStatusCommand extends QueueCount
      * @var string
      */
     protected $signature = 'queue:status {--queue= : Queue to query}
-                                        {--live}
+                                        {--live : Keep Checking Queue every few seconds }
                                         {--pause=3 : Number seconds to pause before rechecking status}
+                                        {--count=5 : Number of jobs to show}
                                         ';
     /**
      * The console command description.

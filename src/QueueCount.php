@@ -5,7 +5,7 @@ namespace Tobya\Queuestatus;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
-
+use Illuminate\Support\Carbon;
 class QueueCount extends Command
 {
     /**
@@ -14,8 +14,9 @@ class QueueCount extends Command
      * @var string
      */
     protected $signature = 'queue:count {--queue= : Queue to query}
-                                        {--live}
+                                        {--live : Keep Checking Queue every few seconds }
                                         {--pause=3 : Number seconds to pause before rechecking status}
+                                        {--count=5 : Number of jobs to show}
                                         ';
 
     /**
@@ -64,12 +65,13 @@ class QueueCount extends Command
             }
         }
 
-        $jobs = Job::take(5)->get();
-        //  return $jobs->count() . 'alsdkjflj';
-        //$this->info($jobs->count());
+        $jobs = Job::OrderBy('available_at','asc')->take($this->option('count'))->get();
+
         $jobs->each(function ($job){
             $JobDetails = json_decode($job->payload);
-            $this->info( $job->queue .' | '. $JobDetails->displayName);
+            $this->info( $job->queue
+                          .' | '. $JobDetails->displayName
+                          . '|' . Carbon::parse($job->available_at)->diffForHumans());
         });
 
         if ($this->option('live')  ){
