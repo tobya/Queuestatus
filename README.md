@@ -18,9 +18,9 @@ You can also view job models
 
 > php artisan queue:jobs
 
-and there is an alias for status
+You keep showing status by using --live and choose to change the default pause of 3 seconds.
 
-> php artisan queue:count
+> php artisan queue:status --live --pause=5
 
 # Requires
 
