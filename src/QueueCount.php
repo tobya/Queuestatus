@@ -71,7 +71,7 @@ class QueueCount extends Command
             $JobDetails = json_decode($job->payload);
             $this->info( $job->queue
                           .' | '. $JobDetails->displayName
-                          . '|' . Carbon::parse($job->available_at)->diffForHumans());
+                          . '|' . Carbon::createFromTimestamp($job->available_at)->diffForHumans());
         });
 
         if ($this->option('live')  ){
