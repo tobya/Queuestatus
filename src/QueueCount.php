@@ -65,7 +65,11 @@ class QueueCount extends Command
             }
         }
 
-        $jobs = Job::OrderBy('available_at','asc')->take($this->option('count'))->get();
+        $jobQuery = Job::query();
+         if ($this->option ('queue') <> ''){
+            $jobQuery->where('queue',  $this->option('queue'));
+        }
+        $jobs = $jobQuery->OrderBy('available_at','asc')->take($this->option('count'))->get();
 
         $jobs->each(function ($job){
             $JobDetails = json_decode($job->payload);
